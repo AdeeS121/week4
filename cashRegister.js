@@ -6,9 +6,9 @@ const rl = readline.createInterface({
 
 rl.question('~~~ Welcome to Wally\'s Hotdogs ~~~ ',  function() {
     const transOptions = new Map() 
-    transOptions.set(1, '[1] - Start transaction')
-    transOptions.set(2, '[2] - Current running transaction')
-    transOptions.set(3, '[3] - Exit')
+    transOptions.set(1, '[1] - Start transaction');
+    transOptions.set(2, '[2] - Current running transaction');
+    transOptions.set(3, '[3] - Exit');
    
     let transaction1 = transOptions.get(1);
     let transaction2 = transOptions.get(2);
@@ -17,10 +17,10 @@ rl.question('~~~ Welcome to Wally\'s Hotdogs ~~~ ',  function() {
     console.log(`${transaction1} \n${transaction2}, \n${transaction3}`)
 
     const choicePayOptions = new Map()
-    choicePayOptions.set(1, '[1] - Hot Dog - $4.50')
-    choicePayOptions.set(2, '[2] - Soda - $1.50')
-    choicePayOptions.set(3, '[3] - Chips - $1.00')
-    choicePayOptions.set(4, '[4] - Start Payment Process')
+    choicePayOptions.set(1, '[1] - Hot Dog - $4.50');
+    choicePayOptions.set(2, '[2] - Soda - $1.50');
+    choicePayOptions.set(3, '[3] - Chips - $1.00');
+    choicePayOptions.set(4, '[4] - Start Payment Process');
     let item1 = choicePayOptions.get(1);
     let item2 = choicePayOptions.get(2);
     let item3 = choicePayOptions.get(3);
@@ -31,15 +31,20 @@ rl.question('~~~ Welcome to Wally\'s Hotdogs ~~~ ',  function() {
     rl.question('Please make a selection: ', function(selection) {
 
        if (selection == 1) {
-            // console.log(`${item1} \n${item2} \n${item3} \n${item4}`)
-            console.log('hi')
+            console.log(`${item1} \n${item2} \n${item3} \n${item4}`)
+            // console.log('hi');
        } else if (selection == 2){
-            console.log('incorrect')
+            console.log('incorrect');
        } else {
-           console.log('Bye')
+           console.log('Bye');
        }
-           
-            rl.close();
+    //    rl.close();
+    rl.question('Select an item: ', function(item) {
+
+console.log(item1)
+rl.close()
+    })
+            
 
     })
 })
