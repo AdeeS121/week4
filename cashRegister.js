@@ -1,4 +1,4 @@
-const { cpuUsage } = require("process");
+const { cpuUsage, removeAllListeners } = require("process");
 const readline = require("readline");
 const { callbackify } = require("util");
 const rl = readline.createInterface({
@@ -32,32 +32,46 @@ function startProgram() {
 
 function greetUser(transaction1, transaction2, transaction3) {
   console.log(`Welcome to Wally's HotDogs \n\n${transaction1} \n${transaction2} \n${transaction3} `);
-  // console.log(`${transaction1} \n${transaction2} \n${transaction3}`);
-  // rl.question('Make selection: ', function(selection) {
-  //   console.log(selection)
-  // })
 }
 
 function selectItem(item1, item2, item3, item4) {
   rl.question('\nMake selection: ', function (selection) {
+  
     if (selection == 1) {
       console.log(`\n~~ Starting New Transaction ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
+      // console.log(`Select an item: `)
+      
     }
-      rl.on('line', function (item){
+ rl.question('Select an Item: ', function(item) {    
+if (item == 1 || item == 2 || item == 3) {
+  
+}
+    })
+
+      rl.on('line', function (item) {
           if (item == 4) {
             rl.close()
           } else if (item == 1) {
-             console.log(`~~ You added a Hot Dog ~~ \n\n${item1} \n${item2} \n${item3} \n${item4} `);
+          console.log(`\nSelect an Item: ${item} `)
+             console.log(`\n~~ You added a Hot Dog ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
+             console.log('Select an Item: ')
+
           } else if (item == 2){
-            console.log(`\n~~ You added a Soda ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`)
+            console.log(`\nSelect an Item: ${item} `) 
+            console.log(`~~ You added a Soda ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`)
+              console.log('Select an Item: ') 
           } else if (item ==3) {
-            console.log(`~~ You added Chips ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`)
+            console.log(`\nSelect an Item: ${item} `) 
+            console.log(`~~ You added Chips ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`) 
+            console.log('Select an Item: ') 
+
           } else {
             console.log('Invalid entry')
-          } 
+          }         
     })  
   })
-};
+}
+
 
 return startProgram();
 
