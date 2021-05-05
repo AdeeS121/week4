@@ -28,7 +28,8 @@ function startProgram() {
 
   greetUser(transaction1, transaction2, transaction3);
   selectItem(item1, item2, item3, item4);
-  payment(item1, item2, item3)
+  // payment(item1, item2, item3)
+  // let all = totalPay = (item1 + item2 + item3);
 }
 
 function greetUser(transaction1, transaction2, transaction3) {
@@ -43,18 +44,12 @@ function selectItem(item1, item2, item3, item4) {
       console.log(`\nSelect an Item: `);
     }
     else if (selection == 2) {
-      console.log('help me')
+      console.log(totalPay)
     } else if (selection == 3) {
       rl.close();
     } else {
      console.log('Invalid entry');
     }
-//  rl.question('Select an Item: ', function(item) {    
-// if (item == 1 || selection == 2 || selection == 3) {
-// console.log('Selectivrerereee')
-// rl.close();
-// }
-//     })
 
       rl.on('line', function (item) {
           if (selection == 5) {
@@ -79,12 +74,16 @@ function selectItem(item1, item2, item3, item4) {
     })  
   })
 }
-function payment(item1, item2, item3) {
-  // console.log('Help is on the way')
-}
+// function totalPay(item1, item2, item3) {
+// totalPay = (item1 + item2 + item3)
+// console.log("Hello")
+// }
 
 
-
+rl.on("close", function () {
+  console.log("\nBYE BYE !!!");
+  process.exit(0);
+});
 
 return startProgram();
 
