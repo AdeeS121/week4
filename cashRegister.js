@@ -79,7 +79,7 @@ rl.question('Select an item: ', function(choice) {
     displayChoicePayOptions();
   } else if (choice == 2) {
     console.log('You added a Soda')
-    displayChoicePayOptions();
+    displayChoicePayOptions(); 
   } else if (choice == 3) {
     console.log('You added Chips')
     displayChoicePayOptions();
