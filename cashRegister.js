@@ -11,9 +11,9 @@ function startProgram() {
 }
 
 const transOptions = new Map();
-transOptions.set("[1] - ", "Start transaction");
-transOptions.set("[2] - ", "Current running transaction");
-transOptions.set("[3] - ", "Exit");
+transOptions.set('[1] - ', 'Start transaction');
+transOptions.set('[2] - ', 'Current running transaction');
+transOptions.set('[3] - ', 'Exit');
 
 const choicePayOptions = new Map();
 choicePayOptions.set('[1] - Hot Dog - ', '$4.50');
@@ -67,10 +67,43 @@ function displayTransOptions() {
     // })
 
 function displayChoicePayOptions() {
+  // for (let [key, value] of choicePayOptions) 
+  // console.log(key + value);
   for (let [key, value] of choicePayOptions) 
   console.log(key + value);
+  
+rl.question('Select an item: ', function(choice) {
 
+  if (choice == 1) {
+    console.log('~~ You added a Hot Dog ~~')
+    displayChoicePayOptions();
+  } else if (choice == 2) {
+    console.log('You added a Soda')
+    displayChoicePayOptions();
+  } else if (choice == 3) {
+    console.log('You added Chips')
+    displayChoicePayOptions();
+  }
+  else { 
+    console.log('Invalid entry')
+    displayChoicePayOptions();
+  }
+})
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function currentTransactions() {
     console.log('currentTransactions')
