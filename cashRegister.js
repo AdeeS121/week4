@@ -11,120 +11,96 @@ function startProgram() {
 }
 
 const transOptions = new Map();
-transOptions.set('[1] - ', 'Start transaction');
-transOptions.set('[2] - ', 'Current running transaction');
-transOptions.set('[3] - ', 'Exit');
+transOptions.set("[1] - ", "Start transaction");
+transOptions.set("[2] - ", "Current running transaction");
+transOptions.set("[3] - ", "Exit");
 
 const choicePayOptions = new Map();
-choicePayOptions.set('[1] - Hot Dog - ', '$4.50');
-choicePayOptions.set('[2] - Soda - ', '$1.50');
-choicePayOptions.set('[3] - Chips - ', '$1.00');
-choicePayOptions.set('[4] - ', 'Start Payment Process');
+choicePayOptions.set("[1] - Hot Dog - ", "$4.50");
+choicePayOptions.set("[2] - Soda - ", "$1.50");
+choicePayOptions.set("[3] - Chips - ", "$1.00");
+choicePayOptions.set("[4] - ", "Start Payment Process");
 
 function greetUser() {
-  console.log("Welcome to Wally's HotDogs");
+  console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
 }
 
 function displayTransOptions() {
-  for (let [key, value] of transOptions) 
-  console.log(key + value);
-  rl.question('\nMake selection: ', function (selection) {
-
+  for (let [key, value] of transOptions) console.log(" " + key + value);
+  rl.question("\nMake selection: ", function (selection) {
     if (selection == 1) {
-   displayChoicePayOptions()
-    }
-    else if (selection == 2) {
-     currentTransactions()
+      console.log("\n~~ Starting New Transaction ~~\n");
+      displayChoicePayOptions();
+    } else if (selection == 2) {
+      currentTransactions();
     } else if (selection == 3) {
       rl.close();
     } else {
-     console.log('Invalid entry');
+      console.log("Invalid entry");
+      displayTransOptions();
     }
-   
-  })
+  });
 }
-
- //   rl.on('line', function (item) {
-    //       if (selection == 5) {
-    //         rl.close()
-    //       } else if (item == 1) {
-    //       console.log(`\nSelect an Item: ${item}`)
-    //          console.log(`~~ You added a Hot Dog ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
-    //          console.log('Select an Item: ')
-
-    //       } else if (item == 2){
-    //         console.log(`\nSelect an Item: ${item}`);
-    //         console.log(`~~ You added a Soda ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
-    //           console.log('Select an Item: ');
-    //       } else if (item ==3) {
-    //         console.log(`\nSelect an Item: ${item}`)
-    //         console.log(`~~ You added Chips ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
-    //         console.log('Select an Item: ');
-
-    //       } else {
-    //        rl.close()
-    //       }
-    // })
 
 function displayChoicePayOptions() {
-  // for (let [key, value] of choicePayOptions) 
-  // console.log(key + value);
-  for (let [key, value] of choicePayOptions) 
-  console.log(key + value);
-  
-rl.question('Select an item: ', function(choice) {
+  for (let [key, value] of choicePayOptions) console.log(key + value);
 
-  if (choice == 1) {
-    console.log('~~ You added a Hot Dog ~~')
-    displayChoicePayOptions();
-  } else if (choice == 2) {
-    console.log('You added a Soda')
-    displayChoicePayOptions(); 
-  } else if (choice == 3) {
-    console.log('You added Chips')
-    displayChoicePayOptions();
-  }
-  else { 
-    console.log('Invalid entry')
-    displayChoicePayOptions();
-  }
-})
+  rl.question("\nSelect an item: ", function (choice) {
+    if (choice == 1) {
+      console.log("~~ You added a Hot Dog ~~\n");
+      // console.log(choicePayOptions.get[1])
+      displayChoicePayOptions();
+    } else if (choice == 2) {
+      console.log("You added a Soda");
+      displayChoicePayOptions();
+    } else if (choice == 3) {
+      console.log("You added Chips");
+      displayChoicePayOptions();
+    } else {
+      console.log("Invalid entry");
+      displayChoicePayOptions();
+    }
+  });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function currentTransactions() {
-    console.log('currentTransactions')
+  console.log("currentTransactions");
 }
 
+startProgram();
+//   rl.on('line', function (item) {
+//       if (selection == 5) {
+//         rl.close()
+//       } else if (item == 1) {
+//       console.log(`\nSelect an Item: ${item}`)
+//          console.log(`~~ You added a Hot Dog ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
+//          console.log('Select an Item: ')
 
+//       } else if (item == 2){
+//         console.log(`\nSelect an Item: ${item}`);
+//         console.log(`~~ You added a Soda ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
+//           console.log('Select an Item: ');
+//       } else if (item ==3) {
+//         console.log(`\nSelect an Item: ${item}`)
+//         console.log(`~~ You added Chips ~~ \n\n${item1} \n${item2} \n${item3} \n${item4}`);
+//         console.log('Select an Item: ');
 
+//       } else {
+//        rl.close()
+//       }
+// })
 
 // function displayChoicePayOptions() {
 
-// for (let [key, value] of choicePayOptions) 
+// for (let [key, value] of choicePayOptions)
 //   console.log(key + value);
 
 //  rl.question("Selection an item: ", function (choice) {
 
 //    if (choice == 1) {
 
-
-
 //  {
-      
+
 //     }
 //      console.log('Another successful try')
 //    }
@@ -134,8 +110,6 @@ function currentTransactions() {
 // // greetUser();
 // // displayTransOptions();
 // displayChoicePayOptions();
-
-startProgram();
 
 // startProgram()
 // add to the array
