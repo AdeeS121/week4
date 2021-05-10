@@ -31,7 +31,6 @@ function displayTransOptions() {
       console.log("\n~~ Starting New Transaction ~~\n");
       displayChoicePayOptions();
     } else if (selection == 2) {
-      currentTransactions();
     } else if (selection == 3) {
       rl.close();
     } else {
@@ -41,52 +40,56 @@ function displayTransOptions() {
   });
 }
 
-let tester = []
+let totalTransaction = [];
 
 function displayChoicePayOptions() {
 
-  for (let [key, value] of choicePayOptions) 
+  for (let [key, value] of choicePayOptions)
   console.log(key +  value);
 
   rl.question("\nSelect an item: ", function (choice) {
-let itemPrices = [...choicePayOptions.values()]
- for (let i = 0; i < itemPrices; i++) {
-    itemPrices++
- }
+let productPrice = [...choicePayOptions.values()];
+let item1 = productPrice[0];
+let item2 = productPrice[1];
+let item3 = productPrice[2]
+// // totalTransaction = (item1, item2, item3)
+// console.log('inside tt', totalTransaction)
 
+ for (let i = 0; i < productPrice; i++) {
+    productPrice++
+ }
     if (choice == 1) {
-    //  itemPrice.push('test')
-    tester.push(itemPrices[0])
-    //  console.log('Will this work', tester)
+    totalTransaction.push(item1);
       console.log("~~ You added a Hot Dog ~~\n");
       displayChoicePayOptions();
+      // console.log(totalTransaction)
     } else if (choice == 2) {
-      tester.push(itemPrices[1])
-      console.log("~~ You added2 a Soda ~~\n");
+      totalTransaction.push(item2);
+      console.log("~~ You added a Soda ~~\n");
       displayChoicePayOptions();
     } else if (choice == 3) {
-      tester.push(itemPrices[2])
+      totalTransaction.push(item3);
       console.log("~~ You added Chips ~~\n");
       displayChoicePayOptions();
-    } else {
-      // console.log("Invalid entry")
-    
+    } else if(choice == 4) {
+      console.log('~~ STARTING PAYMENT ~~');
+    //  console.log(totalTransaction);
      displayPaymentProcess();
-     
+    } else {
+      console.log('Invalid entry')
+      displayChoicePayOptions();
     }
-      console.log(tester)
-
   });
- 
 }
 
-function displayPaymentProcess(tester) {
- 
-     console.log(tester);
+function displayPaymentProcess() {
+
+console.log('payProcess')
 
   rl.close();
-}
 
+}
+// displayPaymentProcess()
 startProgram();
 
 
