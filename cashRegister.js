@@ -9,6 +9,7 @@ const rl = readline.createInterface({
 function startProgram() {
   greetUser();
   displayTransOptions();
+  // currentRunningTransactions();
 
 }
 
@@ -39,6 +40,8 @@ function displayTransOptions() {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
     } else if (selection == 2) {
+      console.log('so far so good')
+      currentRunningTransactions()
     } else if (selection == 3) {
       rl.close();
     } else {
@@ -115,6 +118,8 @@ for (let [key, value] of paymentMethod)
       console.log(
         `~~ You have selected ${credit} ~~ \n~~ Thank you for choosing Wally\'s! ~~`);
         greetUser()
+        displayTransOptions()
+        // currentRunningTransactions()
     }
 
 
@@ -122,13 +127,16 @@ for (let [key, value] of paymentMethod)
     function greetUser() {
       console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
       displayTransOptions()
+      // displayChoicePayOptions()
     }
-   
 
 
+    function currentRunningTransactions() {
+
+console.log('it is working')
 
 
-
+    }
 
 
     rl.close();
