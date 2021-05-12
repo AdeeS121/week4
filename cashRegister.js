@@ -9,8 +9,7 @@ const rl = readline.createInterface({
 function startProgram() {
   greetUser();
   displayTransOptions();
-  // currentRunningTransactions();
-
+  // currentRunningTransactions()
 }
 
 const transOptions = new Map();
@@ -40,7 +39,6 @@ function displayTransOptions() {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
     } else if (selection == 2) {
-      console.log('so far so good')
       currentRunningTransactions()
     } else if (selection == 3) {
       rl.close();
@@ -51,6 +49,11 @@ function displayTransOptions() {
     }
   });
 }
+//you probably want to apply that array that’s created from all the transactions, 
+//add it up and apply it to a map/object that just increments the keys by 1. 
+
+
+
 
 let totalTransaction = [];
 
@@ -93,14 +96,16 @@ function displayChoicePayOptions() {
   });
 }
 
+total = 0;
 function startPaymentProcess() {
-  count = 0;
+  
   for (var i = 0; i < totalTransaction.length; i++) {
-    count += totalTransaction[i];
+    total += totalTransaction[i];
   }
- 
+ total = total.toFixed(2);
+ console.log(total)
   // Add zeros on the end, removed after parseFloat
-  console.log(`\nYour Total is: $${count.toFixed(2)}`);
+  console.log(`\nYour Total is: $${total}`);
 
 for (let [key, value] of paymentMethod)
     console.log(key + value);
@@ -113,38 +118,64 @@ for (let [key, value] of paymentMethod)
 
     if (choice == 1) {
       console.log( `~~ You have selected ${cash} ~~ \n~~ Thank you for choosing Wally\'s! ~~`);
-      greetUser()
+      greetUser();
+      displayTransOptions();
+//  displayTransOptions()
+//  displayChoicePayOptions() 
+     
+      // currentRunningTransactions()
     } else if (choice == 2) {
       console.log(
         `~~ You have selected ${credit} ~~ \n~~ Thank you for choosing Wally\'s! ~~`);
-        greetUser()
-        displayTransOptions()
         // currentRunningTransactions()
+        // greetUser()
+        // displayTransOptions()
     }
+ 
+  });
+}
 
+function greetUser() {
+  console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
+}
+function displayTransOptions() {
+  for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
 
-
-    function greetUser() {
-      console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
-      displayTransOptions()
-      // displayChoicePayOptions()
+  rl.question("\nMake selection: ", function (selection) {
+    if (selection == 1) {
+      console.log("\n~~ Starting New Transaction ~~ \n");
+      displayChoicePayOptions();
+    } else if (selection == 2) {
+      currentRunningTransactions()
+    } else if (selection == 3) {
+      rl.close();
+    } else {
+      console.log("Invalid entry");
+      displayTransOptions();
+      1;
     }
-
-
-    function currentRunningTransactions() {
-
-console.log('it is working')
-
-
-    }
-
-
-    rl.close();
   });
 }
 
 
+function currentRunningTransactions(credit) {
+
+
+  console.log(`~~Here are the current transactions so far~~\n{\n\n1:['$${total}', ${credit}]\n\n}`)
+ 
+
+   console.log()
+
+rl.close();
+}
+
 startProgram();
+
+
+// you probably want to apply that array that’s created from all the transactions, 
+// add it up and apply it to a map/object that just increments the keys by 1. 
+
+
 
 
 
