@@ -49,7 +49,7 @@ function displayTransOptions() {
   });
 }
 
-let totalTransaction = [];
+totalTransaction = [];
 
 function displayChoicePayOptions() {
   // Reminder:  Remove the dollar sign from Start Payment Process
@@ -91,45 +91,17 @@ function displayChoicePayOptions() {
 }
 
 total = 0;
-
+payChoice = [];
 function startPaymentProcess() {
- 
-
-for (var i = 0; i < totalTransaction.length; i++) {
+  for (var i = 0; i < totalTransaction.length; i++) {
     total += totalTransaction[i];
   }
 
-  
-// totalTransaction = map.keys()
-// console.log(totalTransaction)
-// // let testTotal = [
-// //   {
-// //     food: food1,
-// //     total: total,
-// //     isCredit: true
-// //   }
-
-// // ]
-
-
-
-
-// // console.log('foodItem', food1)
-// // console.log('total', total)
-// // console.log('testTotal', testTotal[1])
-
-// //   console.log('totalTrans', totalTransaction)
-//   // console.log('total', total)
-
-// you probably want to apply that array that’s created from all the transactions,
-// add it up and apply it to a map/object that just increments the keys by 1.
-
-
-
-
-
+  // you probably want to apply that array that’s created from all the transactions,
+  // add it up and apply it to a map/object that just increments the keys by 1.
 
   // Add zeros on the end, removed after parseFloat
+
   total = total.toFixed(2);
 
   console.log(`\nYour Total is: $${total}`);
@@ -144,24 +116,27 @@ for (var i = 0; i < totalTransaction.length; i++) {
     // for (let[key, value] of paymentMethod) console.log(key + value)
 
     if (option == 1) {
+      payChoice.push(option1);
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-     
+      console.log(payChoice);
+
       greetUser();
       displayTransOptions();
       // currentRunningTransactions()
     } else if (option == 2) {
+      payChoice.push(option2);
       console.log(
         `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
+      console.log(payChoice);
       greetUser();
       displayTransOptions();
       // currentRunningTransactions()
     }
   });
 }
-
 
 function greetUser() {
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
@@ -186,21 +161,36 @@ function displayTransOptions() {
 }
 
 function currentRunningTransactions() {
+  const finalPrice = new Map();
+  finalPrice.set('1:',  [total, payChoice]);
+// finalPrice.set(payChoice)
+  // console.log(key + " " + "- " + value);
+  for (let [key, value] of finalPrice) 
+  // console.log(key);
 
-  
-  console.log(
-    `~~Here are the current transactions so far~~\n{\n\n1:['$${total}'`);
-// bring in string 
-  console.log();
+
+  console.log(`~~Here are the current transactions so far~~  \n{  \n${key} ${value} \n}`);
+  // console.log(total + payChoice)
+
+  // 1: [‘$6.00’, ‘Credit’]
 
   rl.close();
 }
 
 
 
+// ~~~ Welcome to Wally’s Hotdogs ~~~
+// [1] – Start new transaction
+// [2] – Current running transactions
+// [3] – Exit
+// >>> Make selection: 3
+// ~~ WOO HOO! Day is over ~~
+// Great Job Today:
+// Transactions: 1
+// Total Sales: $6.00
+// ~~~ GOODBYE ~~~
+
 startProgram();
-
-
 
 // rl.on("close", function () {
 //   console.log("\nBYE BYE !!!");
