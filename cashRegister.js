@@ -9,7 +9,6 @@ const rl = readline.createInterface({
 function startProgram() {
   greetUser();
   displayTransOptions();
-  // currentRunningTransactions()
 }
 
 const transOptions = new Map();
@@ -39,7 +38,7 @@ function displayTransOptions() {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
     } else if (selection == 2) {
-      currentRunningTransactions()
+      currentRunningTransactions();
     } else if (selection == 3) {
       rl.close();
     } else {
@@ -49,11 +48,6 @@ function displayTransOptions() {
     }
   });
 }
-//you probably want to apply that array that’s created from all the transactions, 
-//add it up and apply it to a map/object that just increments the keys by 1. 
-
-
-
 
 let totalTransaction = [];
 
@@ -97,43 +91,77 @@ function displayChoicePayOptions() {
 }
 
 total = 0;
+
 function startPaymentProcess() {
-  
-  for (var i = 0; i < totalTransaction.length; i++) {
+ 
+
+for (var i = 0; i < totalTransaction.length; i++) {
     total += totalTransaction[i];
   }
- total = total.toFixed(2);
- console.log(total)
+
+  
+// totalTransaction = map.keys()
+// console.log(totalTransaction)
+// // let testTotal = [
+// //   {
+// //     food: food1,
+// //     total: total,
+// //     isCredit: true
+// //   }
+
+// // ]
+
+
+
+
+// // console.log('foodItem', food1)
+// // console.log('total', total)
+// // console.log('testTotal', testTotal[1])
+
+// //   console.log('totalTrans', totalTransaction)
+//   // console.log('total', total)
+
+// you probably want to apply that array that’s created from all the transactions,
+// add it up and apply it to a map/object that just increments the keys by 1.
+
+
+
+
+
+
   // Add zeros on the end, removed after parseFloat
+  total = total.toFixed(2);
+
   console.log(`\nYour Total is: $${total}`);
 
-for (let [key, value] of paymentMethod)
-    console.log(key + value);
-    const payOption = [...paymentMethod.values()];
-    cash = payOption[0].toLowerCase(1);
-    credit = payOption[1].toLowerCase(1);
+  for (let [key, value] of paymentMethod) console.log(key + value);
 
-  rl.question("How would you like to pay: ", function (choice) {
+  const payOption = [...paymentMethod.values()];
+  let option1 = payOption[0];
+  let option2 = payOption[1];
+
+  rl.question("How would you like to pay: ", function (option) {
     // for (let[key, value] of paymentMethod) console.log(key + value)
 
-    if (choice == 1) {
-      console.log( `~~ You have selected ${cash} ~~ \n~~ Thank you for choosing Wally\'s! ~~`);
+    if (option == 1) {
+      console.log(
+        `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
+      );
+     
       greetUser();
       displayTransOptions();
-//  displayTransOptions()
-//  displayChoicePayOptions() 
-     
       // currentRunningTransactions()
-    } else if (choice == 2) {
+    } else if (option == 2) {
       console.log(
-        `~~ You have selected ${credit} ~~ \n~~ Thank you for choosing Wally\'s! ~~`);
-        // currentRunningTransactions()
-        // greetUser()
-        // displayTransOptions()
+        `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
+      );
+      greetUser();
+      displayTransOptions();
+      // currentRunningTransactions()
     }
- 
   });
 }
+
 
 function greetUser() {
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
@@ -146,7 +174,7 @@ function displayTransOptions() {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
     } else if (selection == 2) {
-      currentRunningTransactions()
+      currentRunningTransactions();
     } else if (selection == 3) {
       rl.close();
     } else {
@@ -157,25 +185,20 @@ function displayTransOptions() {
   });
 }
 
+function currentRunningTransactions() {
 
-function currentRunningTransactions(credit) {
+  
+  console.log(
+    `~~Here are the current transactions so far~~\n{\n\n1:['$${total}'`);
+// bring in string 
+  console.log();
 
-
-  console.log(`~~Here are the current transactions so far~~\n{\n\n1:['$${total}', ${credit}]\n\n}`)
- 
-
-   console.log()
-
-rl.close();
+  rl.close();
 }
 
+
+
 startProgram();
-
-
-// you probably want to apply that array that’s created from all the transactions, 
-// add it up and apply it to a map/object that just increments the keys by 1. 
-
-
 
 
 
