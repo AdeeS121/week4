@@ -97,43 +97,32 @@ function startPaymentProcess() {
     total += totalTransaction[i];
   }
 
-  // you probably want to apply that array that’s created from all the transactions,
-  // add it up and apply it to a map/object that just increments the keys by 1.
-
   // Add zeros on the end, removed after parseFloat
-
-  total = total.toFixed(2);
-
-  console.log(`\nYour Total is: $${total}`);
+  //TypeError: total.toFixed is not a function
+  // total = total.toFixed(2);
+  console.log(`\nYour Total is: $${total.toFixed(2)}`);
 
   for (let [key, value] of paymentMethod) console.log(key + value);
-
   const payOption = [...paymentMethod.values()];
   let option1 = payOption[0];
   let option2 = payOption[1];
 
   rl.question("How would you like to pay: ", function (option) {
     // for (let[key, value] of paymentMethod) console.log(key + value)
-
     if (option == 1) {
       payChoice.push(option1);
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-      console.log(payChoice);
-
       greetUser();
       displayTransOptions();
-      // currentRunningTransactions()
     } else if (option == 2) {
       payChoice.push(option2);
       console.log(
         `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-      console.log(payChoice);
       greetUser();
       displayTransOptions();
-      // currentRunningTransactions()
     }
   });
 }
@@ -160,22 +149,50 @@ function displayTransOptions() {
   });
 }
 
+
+
 function currentRunningTransactions() {
-  const finalPrice = new Map();
-  finalPrice.set('1:',  [total, payChoice]);
-// finalPrice.set(payChoice)
-  // console.log(key + " " + "- " + value);
-  for (let [key, value] of finalPrice) 
-  // console.log(key);
+
+let finalPrice = new Map();
+finalPrice.set(total, payChoice)
+
+for (let runPrice of finalPrice)
+ console.log(runPrice)
+ 
+ 
 
 
-  console.log(`~~Here are the current transactions so far~~  \n{  \n${key} ${value} \n}`);
-  // console.log(total + payChoice)
 
-  // 1: [‘$6.00’, ‘Credit’]
 
-  rl.close();
+greetUser()
+displayTransOptions()  
 }
+
+function greetUser() {
+  console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
+}
+
+function displayTransOptions() {
+  for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
+
+  rl.question("\nMake selection: ", function (selection) {
+    if (selection == 1) {
+      console.log("\n~~ Starting New Transaction ~~ \n");
+      displayChoicePayOptions();
+    } else if (selection == 2) {
+      currentRunningTransactions();
+    } else if (selection == 3) {
+      rl.close();
+    } else {
+      console.log("Invalid entry");
+      displayTransOptions();
+      1;
+    }
+  });
+}
+
+// rl.close();
+
 
 
 
