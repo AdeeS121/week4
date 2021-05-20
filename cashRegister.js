@@ -1,3 +1,4 @@
+const { R_OK } = require("constants");
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -87,45 +88,52 @@ function displayChoicePayOptions() {
   });
 }
 
-total = {} = payChoice = [];
-// let finalPrice = new Map(Object.entries('1', total, payChoice))
 
-console.log("this is top total", total);
-console.log(payChoice);
+sum = 0;
+total = [] = payChoice = [];
+// let finalPrice = new Map(Object.entries(total))
+
+
 function startPaymentProcess() {
-  sum = 0;
-  for (let i = 0; i < totalTransaction.length; i++) {
-    sum += totalTransaction[i];
-  }
+  // ******** do not delete **********
+  // let payTest = [...totalTransaction.values()];
 
-  // Add zeros on the end, removed after parseFloat
-  //TypeError: total.toFixed is not a function
-  // total = total.toFixed(2);
-  console.log(`\nYour Total is: $${sum.toFixed(2)}`);
+  foodTotal = totalTransaction.reduce(function (curr, prev) 
+  { return curr + prev; });
+
+    // for (let i = 0; i < totalTransaction.length; i++) {
+    //   sum += totalTransaction[i];
+      
+    // }
+
+  console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
 
   for (let [key, value] of paymentMethod) console.log(key + value);
   const payOption = [...paymentMethod.values()];
   let option1 = payOption[0];
   let option2 = payOption[1];
-  let finalPrice = sum.toFixed(2);
 
   rl.question("How would you like to pay: ", function (option) {
+  totalTransaction = []
+    // Add zeros on the end, removed after parseFloat
     if (option == 1) {
-      total.push(finalPrice);
+      total.push(foodTotal.toFixed(2));
       payChoice.push(option1);
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
+
       greetUser();
       displayTransOptions();
     } else if (option == 2) {
-      total.push(finalPrice);
+      total.push(foodTotal.toFixed(2));
       payChoice.push(option2);
       console.log(
-        `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
+        `~~ You have s2elected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
+
       greetUser();
-      displayTransOptions();
+      displayTransOptions(); 
     }
   });
 }
@@ -133,6 +141,7 @@ function startPaymentProcess() {
 function greetUser() {
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
 }
+
 function displayTransOptions() {
   for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
 
@@ -147,25 +156,24 @@ function displayTransOptions() {
     } else {
       console.log("Invalid entry");
       displayTransOptions();
-      ;
     }
   });
 }
 
 function currentRunningTransactions() {
-
-  let finalPrice = new Map(Object.entries('1', total))
+ 
+  // console.log("total CRT", total);
   
-  console.log('would lke to pay', finalPrice)
-  console.log('this is the totalprice', total)
+  let finalPrice = new Map()
+  finalPrice.set(1, [total])
+  console.log('final price nice', finalPrice)
 
+  // let finalPrice = new Set()
+  // finalPrice.add(total)
 
-
-  // let finalPrice = new Map()
-  // finalPrice.set(total)
-  // // map.clear()
-  // // total.set('1:', [total])
-  // console.log('would lke to pay', total)
+  // map.clear()
+  // total.set('1:', [total])
+  // let finalPrice = new Map(Object.entries(total));
 
 
   greetUser();
@@ -194,7 +202,7 @@ function displayTransOptions() {
   });
 }
 
-// rl.close();
+
 
 // ~~~ Welcome to Wally’s Hotdogs ~~~
 // [1] – Start new transaction
