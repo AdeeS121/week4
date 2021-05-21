@@ -89,7 +89,7 @@ function displayChoicePayOptions() {
 }
 
 
-sum = 0;
+// sum = 0;
 total = [] = payChoice = [];
 // let finalPrice = new Map(Object.entries(total))
 
@@ -107,6 +107,7 @@ function startPaymentProcess() {
     // }
 
   console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
+
 
   for (let [key, value] of paymentMethod) console.log(key + value);
   const payOption = [...paymentMethod.values()];
@@ -161,19 +162,15 @@ function displayTransOptions() {
 }
 
 function currentRunningTransactions() {
- 
-  // console.log("total CRT", total);
-  
-  let finalPrice = new Map()
-  finalPrice.set(1, [total])
-  console.log('final price nice', finalPrice)
 
-  // let finalPrice = new Set()
-  // finalPrice.add(total)
 
-  // map.clear()
-  // total.set('1:', [total])
-  // let finalPrice = new Map(Object.entries(total));
+console.log(`~~Here are the current transactions so far~~`)
+// finalPrice = total
+// console.log(finalPrice)
+let finalPrice = new Map()
+finalPrice.set('1', [total])
+// fianlPrice.set('a', [])
+console.log(finalPrice)
 
 
   greetUser();
