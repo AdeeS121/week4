@@ -1,4 +1,5 @@
 const { R_OK } = require("constants");
+const { get } = require("prompt");
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -49,6 +50,7 @@ function displayTransOptions() {
 }
 
 totalTransaction = [];
+
 function displayChoicePayOptions() {
   // Reminder:  Remove the dollar sign from Start Payment Process
   for (let [key, value] of choicePayOptions)
@@ -88,26 +90,22 @@ function displayChoicePayOptions() {
   });
 }
 
-
-// sum = 0;
 total = [] = payChoice = [];
-// let finalPrice = new Map(Object.entries(total))
-
 
 function startPaymentProcess() {
   // ******** do not delete **********
   // let payTest = [...totalTransaction.values()];
 
-  foodTotal = totalTransaction.reduce(function (curr, prev) 
-  { return curr + prev; });
+  foodTotal = totalTransaction.reduce(function (curr, prev) {
+    return curr + prev;
+  });
 
-    // for (let i = 0; i < totalTransaction.length; i++) {
-    //   sum += totalTransaction[i];
-      
-    // }
+  // for (let i = 0; i < totalTransaction.length; i++) {
+  //   sum += totalTransaction[i];
+
+  // }
 
   console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
-
 
   for (let [key, value] of paymentMethod) console.log(key + value);
   const payOption = [...paymentMethod.values()];
@@ -115,7 +113,8 @@ function startPaymentProcess() {
   let option2 = payOption[1];
 
   rl.question("How would you like to pay: ", function (option) {
-  totalTransaction = []
+    totalTransaction = [];
+    // rl.close()
     // Add zeros on the end, removed after parseFloat
     if (option == 1) {
       total.push(foodTotal.toFixed(2));
@@ -123,7 +122,6 @@ function startPaymentProcess() {
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-
       greetUser();
       displayTransOptions();
     } else if (option == 2) {
@@ -132,10 +130,10 @@ function startPaymentProcess() {
       console.log(
         `~~ You have s2elected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-
-      greetUser();
-      displayTransOptions(); 
     }
+
+    greetUser();
+    displayTransOptions();
   });
 }
 
@@ -162,20 +160,148 @@ function displayTransOptions() {
 }
 
 function currentRunningTransactions() {
+  
+    // console.log(`~~Here are the current transactions so far~~`)
+  // let finalPrice = new Map();
+  // finalPrice.set('a', [total]);
 
+let finalPrice = {...total}
 
-console.log(`~~Here are the current transactions so far~~`)
-// finalPrice = total
 // console.log(finalPrice)
-let finalPrice = new Map()
-finalPrice.set('1', [total])
-// fianlPrice.set('a', [])
+
+
+for (const [index, [, value], payChoice] of Object.entries(Object.entries(finalPrice))) {
+  console.log(`${index}: ${value}`);
+}
+
+//   for (let i = 0; i < finalPrice.length; i++) {
+//   console.log('length', finalPrice[i])
+  
+// }
+
+
+
+
+
+
+//   const object = {a:2, b:4, c:6, d:8};
+
+for (const [index, [, value]] of Object.entries(Object.entries(finalPrice))) {
+  console.log(`${index}: ${value}`);
+}
+
+Object.entries(finalPrice).forEach(([, value], index) => {
+  console.log(`${index}: ${value}`);
+});
+console.log('brac', finalPrice)
+
+
+
+finalPrice = {...total}
+console.log('finalPrice a', finalPrice)
+
+
+finalPrice = [...[total]]
+console.log('finalPrice b', finalPrice)
+
+
+// // console.log(total + ':' + payChoice)
+const key = Object.entries(finalPrice) 
+keyArray = key
+console.log('key', key)
+lastItemInArray = keyArray[keyArray.length-1]
+
+
+
+  for (let i = 0; i < lastItemInArray.length; i++) {
+  lastItemInArray = keyArray =+ 1
+  console.log('length', keyArray)
+  
+}
+
+
+
+
+// // finalPrice['a'] = []
+// // finalPrice['a'] = []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//*****************************************************
+
+
+
+
+
+
+ console.log('fpprice', finalPrice)
+finalPrice = {};
+finalPrice['a'] = [total]
+
 console.log(finalPrice)
+
+index = 0
+while (index < finalPrice.length) {
+  console.log(finalPrice[index]);
+  index++;
+}
+console.log(finalPrice)
+
+
+
+
+lastPrice = {}
+
+lastPrice['a'] = [total]  
+
+const test = Object.entries(lastPrice)
+console.log('test', test)
+console.log('lastPrice', lastPrice)
+
+
+
+// console.log(str);
+finalPrice = []
+for (const property in finalPrice) {
+  property++
+  console.log(`${property}: ${finalPrice[property]}`);
+}
+
+
+
+
+
+
+
+ for (const [index, value] of Object.entries(finalPrice))
+   console.log(`${index}: ${value}`);
+// finalPrice3 { '0': [], a: [] }
+ console.log('finalPrice3', finalPrice)
+
 
 
   greetUser();
   displayTransOptions();
 }
+
+
+
+
+
+
 
 function greetUser() {
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
@@ -199,8 +325,6 @@ function displayTransOptions() {
   });
 }
 
-
-
 // ~~~ Welcome to Wally’s Hotdogs ~~~
 // [1] – Start new transaction
 // [2] – Current running transactions
@@ -218,3 +342,92 @@ startProgram();
 //   console.log("\nBYE BYE !!!");
 //   process.exit(0);
 // });
+
+// let finalPrice = {}
+// finalPrice['a'] = []
+
+// for (const property in finalPrice) {
+//   // console.log(`${property}: ${finalPrice[property]}`);
+// console.log(property)
+// }
+
+// console.log(finalPrice)
+
+// sum = 0
+// let testPrice = {total}
+//     for (let i = 0; i < testPrice.length; i++) {
+//       sum += totalTransaction[i];
+
+//     }
+//     console.log('This is sum', sum)
+
+// // for (let entry of finalPrice.entries())
+
+// console.log(testPrice)
+// // const map = new Map([[1, 'one'], [2, 'two']]);
+// let total = new Map();
+
+// const map = new Map([
+//   [total],
+// ])
+
+// map.forEach((value, key) => {
+//   console.log(`${key}: ${value}`)
+// })
+
+// transNum= 0
+
+// let finalPrice = new Map()
+//   finalPrice.set('1', total )
+// finalPrice = {}
+
+// console.log('this is finalPrice', finalPrice);
+//  {
+// console.log('this is entry', entry);
+// }
+// // entry = {}
+// // finalPrice = {}
+
+// //   transNum++
+// // entry =+ 1
+
+//   // console.log((transNum) + ' :' + ' ' + [entry]);
+//   // console.log(transNum + entry)
+
+//   console.log('this is transNum', transNum);
+
+//   console.log(transNum)
+
+// console.log(finalPrice)
+
+// console.log({})  // console.log(`finalPrice.get('${key}') = ${value}`)
+
+// let finalPrice = {}
+
+// for (let i = 0; i < finalPrice.length; i++)
+// sum += finalPrice[i];
+
+//   // console.log(key + '' + value)
+// }
+
+// ******************************
+
+// total = {4.50, 1.50, 1.00   }
+
+// let finalPrice = new Map()
+// finalPrice.set('a', [total])
+// console.log('totalSum', finalPrice)
+
+// let object = {}
+// object['a'] = [total]
+
+// let sumTrans =0
+
+// for (const property in object) {
+//   console.log(`${property}: ${object[property]}`);
+//  sumTrans++
+// }
+
+// console.log(object)
+
+// ****************************************
