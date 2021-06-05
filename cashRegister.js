@@ -1,4 +1,4 @@
-const { R_OK } = require("constants");
+// const { R_OK } = require("constants");
 const { get } = require("prompt");
 const readline = require("readline");
 const rl = readline.createInterface({
@@ -103,7 +103,6 @@ function displayChoicePayOptions() {
   });
 }
 
-
 function startPaymentProcess() {
   foodTotal = currentTransaction.reduce(function (curr, prev) {
     return curr + prev;
@@ -190,7 +189,7 @@ function displayTransOptions() {
     } else if (selection == 2) {
       currentRunningTransactions();
     } else if (selection == 3) {
-      finalTransactionsAndSales();
+      finalTransactionsAndTotalSales();
     } else {
       console.log("Invalid entry");
       displayTransOptions();
@@ -198,7 +197,7 @@ function displayTransOptions() {
   });
 }
 
-function finalTransactionsAndSales() {
+function finalTransactionsAndTotalSales() {
 
   let totalNumberOfTransactions = total.length;
   let sum = 0;
