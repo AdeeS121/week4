@@ -7,9 +7,11 @@ const rl = readline.createInterface({
 });
 
 // ********** Global Variables **********//
-
+let total = [];
+let payChoice = [];
 let currentTransaction = [];
 let totalTransactions = {};
+
 const transOptions = new Map();
 const choicePayOptions = new Map();
 const paymentMethod = new Map();
@@ -28,9 +30,10 @@ function mapObjectsSetup() {
   transOptions.set("[3]", "Exit");
 
   choicePayOptions.set("[1] - Hot Dog", "4.50");
+  // choicePayOptions.set('[1]',  "Hot Dog - $4.50");
   choicePayOptions.set("[2] - Soda", "1.50");
   choicePayOptions.set("[3] - Chips", "1.00");
-  choicePayOptions.set("[4]", "Start Payment Process");
+  choicePayOptions.set("[4] - Start Payment Process", null);
 
   paymentMethod.set("[1]", "Cash");
   paymentMethod.set("[2]", "Credit");
@@ -60,11 +63,13 @@ function displayTransOptions() {
 
 function displayChoicePayOptions() {
   // Reminder:  Remove the dollar sign from Start Payment Process
-  for (let [key, value] of choicePayOptions)
-    console.log(key + " " + "- " + "$" + value);
-
+  // for (let [key, value] of choicePayOptions) console.log(`${key} - $${value}`);
   const foodItem = [...choicePayOptions.keys()];
   const priceOfItem = [...choicePayOptions.values()];
+
+  console.log(
+    `${foodItem[0]} - $${priceOfItem[0]} \n${foodItem[1]} - $${priceOfItem[1]} \n${foodItem[2]} - $${priceOfItem[2]} \n${foodItem[3]}`
+  );
 
   rl.question("\nSelect an item: ", function (choice) {
     food1 = foodItem[0].slice(6);
@@ -75,7 +80,7 @@ function displayChoicePayOptions() {
     priceFood1 = parseFloat(priceOfItem[0]);
     priceFood2 = parseFloat(priceOfItem[1]);
     priceFood3 = parseFloat(priceOfItem[2]);
-
+    // console.log(`'food1', ${food1}`)
     if (choice == 1) {
       currentTransaction.push(priceFood1);
       console.log(`~~ You added a ${food1} ~~\n`);
@@ -98,20 +103,13 @@ function displayChoicePayOptions() {
   });
 }
 
-total = [];
-payChoice = [];
 
 function startPaymentProcess() {
   foodTotal = currentTransaction.reduce(function (curr, prev) {
     return curr + prev;
   });
   currentTransaction = [];
-  // console.log('foodTotal', foodTotal)
 
-  // currentTransaction.push(foodTotal)
-  // console.log('cct', currentTransaction)
-
-  // currentTransaction = [];
   console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
 
   for (let [key, value] of paymentMethod) console.log(key + value);
@@ -120,8 +118,6 @@ function startPaymentProcess() {
   let option2 = payOption[1];
 
   rl.question("How would you like to pay: ", function (option) {
-    // totalTransactions = [];
-
     // Add zeros on the end, removed after parseFloat
     if (option == 1) {
       total.push(foodTotal.toFixed(2));
@@ -203,10 +199,6 @@ function displayTransOptions() {
 }
 
 function finalTransactionsAndSales() {
-  // console.log("total", total);
-  // // console.log('foodtotal', foodTotal)
-
-  // console.log("currentTrans", currentTransaction);
 
   let totalNumberOfTransactions = total.length;
   let sum = 0;
