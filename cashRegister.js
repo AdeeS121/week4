@@ -80,7 +80,7 @@ function displayChoicePayOptions() {
     priceFood1 = parseFloat(priceOfItem[0]);
     priceFood2 = parseFloat(priceOfItem[1]);
     priceFood3 = parseFloat(priceOfItem[2]);
-    // console.log(`'food1', ${food1}`)
+  
     if (choice == 1) {
       currentTransaction.push(priceFood1);
       console.log(`~~ You added a ${food1} ~~\n`);
@@ -107,11 +107,13 @@ function startPaymentProcess() {
   foodTotal = currentTransaction.reduce(function (curr, prev) {
     return curr + prev;
   });
+  
   currentTransaction = [];
-
+///// *****************************************
   console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
 
-  for (let [key, value] of paymentMethod) console.log(key + value);
+  for (let [key, value] of paymentMethod) 
+  console.log(key + value);
   const payOption = [...paymentMethod.values()];
   let option1 = payOption[0];
   let option2 = payOption[1];
@@ -124,14 +126,16 @@ function startPaymentProcess() {
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-      greetUser();
-      displayTransOptions();
+      // displayTransOptions();
     } else if (option == 2) {
       total.push(foodTotal.toFixed(2));
       payChoice.push(option2);
       console.log(
         `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
+    } else {
+      console.log('Invalid entry')
+ 
     }
 
     greetUser();
@@ -153,7 +157,8 @@ function displayTransOptions() {
     } else if (selection == 2) {
       currentRunningTransactions();
     } else if (selection == 3) {
-      rl.close();
+        finalTransactionsAndTotalSales();
+      // rl.close();
     } else {
       console.log("Invalid entry");
       displayTransOptions();
@@ -164,18 +169,36 @@ function displayTransOptions() {
 function currentRunningTransactions() {
   console.log(`~~Here are the current transactions so far~~`);
 
-  let totalNumberOfTransactions = total.length;
 
-  for (let i = 0; i < totalNumberOfTransactions; i++) {
+  // ******************************
+  let totalNumbers = total.length;
+
+  for (let i = 0; i < totalNumbers; i++) {
     totalTransactions[i + 1] = `$${total[i]},${payChoice[i]}`;
   }
-  console.log(totalTransactions);
+
+  console.log('tt', (totalTransactions));
+
+// **********************************
+
+
+
+
+
+
+  // let totalNumberOfTransactions = total.length;
+
+  // for (let i = 0; i < totalNumberOfTransactions; i++) {
+  //   totalTransactions[i + 1] = `$${total[i]},${payChoice[i]}`;
+  // }
+
+  // console.log('tt', (totalTransactions));
 
   greetUser();
   displayTransOptions();
 }
 
-function greetUser() {
+function greetUser() { 
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
 }
 
