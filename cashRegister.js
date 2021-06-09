@@ -30,7 +30,6 @@ function mapObjectsSetup() {
   transOptions.set("[3]", "Exit");
 
   choicePayOptions.set("[1] - Hot Dog", "4.50");
-  // choicePayOptions.set('[1]',  "Hot Dog - $4.50");
   choicePayOptions.set("[2] - Soda", "1.50");
   choicePayOptions.set("[3] - Chips", "1.00");
   choicePayOptions.set("[4] - Start Payment Process", null);
@@ -80,7 +79,7 @@ function displayChoicePayOptions() {
     priceFood1 = parseFloat(priceOfItem[0]);
     priceFood2 = parseFloat(priceOfItem[1]);
     priceFood3 = parseFloat(priceOfItem[2]);
-  
+
     if (choice == 1) {
       currentTransaction.push(priceFood1);
       console.log(`~~ You added a ${food1} ~~\n`);
@@ -104,16 +103,16 @@ function displayChoicePayOptions() {
 }
 
 function startPaymentProcess() {
-  foodTotal = currentTransaction.reduce(function (curr, prev) {
+  // reduce returns one value (accumulator, value)
+  let foodTotal = currentTransaction.reduce(function (curr, prev) {
     return curr + prev;
   });
-  
+
   currentTransaction = [];
-///// *****************************************
+
   console.log(`\nYour Total is: $${foodTotal.toFixed(2)}`);
 
-  for (let [key, value] of paymentMethod) 
-  console.log(key + value);
+  for (let [key, value] of paymentMethod) console.log(key + value);
   const payOption = [...paymentMethod.values()];
   let option1 = payOption[0];
   let option2 = payOption[1];
@@ -126,7 +125,6 @@ function startPaymentProcess() {
       console.log(
         `~~ You have selected ${option1.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
-      // displayTransOptions();
     } else if (option == 2) {
       total.push(foodTotal.toFixed(2));
       payChoice.push(option2);
@@ -134,10 +132,8 @@ function startPaymentProcess() {
         `~~ You have selected ${option2.toLowerCase()} ~~ \n~~ Thank you for choosing Wally\'s! ~~`
       );
     } else {
-      console.log('Invalid entry')
- 
+      console.log("Invalid entry");
     }
-
     greetUser();
     displayTransOptions();
   });
@@ -157,7 +153,7 @@ function displayTransOptions() {
     } else if (selection == 2) {
       currentRunningTransactions();
     } else if (selection == 3) {
-        finalTransactionsAndTotalSales();
+      finalTransactionsAndTotalSales();
       // rl.close();
     } else {
       console.log("Invalid entry");
@@ -169,36 +165,22 @@ function displayTransOptions() {
 function currentRunningTransactions() {
   console.log(`~~Here are the current transactions so far~~`);
 
-
-  // ******************************
   let totalNumbers = total.length;
-
   for (let i = 0; i < totalNumbers; i++) {
-    totalTransactions[i + 1] = `$${total[i]},${payChoice[i]}`;
+    totalTransactions[i + 1] = `$${total[i]} - ${payChoice[i]}`;
+  } if (totalNumbers == 0) {
+    console.log('{$0.00}')
+  } else {
+ console.log(totalTransactions);
   }
-
-  console.log('tt', (totalTransactions));
-
-// **********************************
-
-
-
-
-
-
-  // let totalNumberOfTransactions = total.length;
-
-  // for (let i = 0; i < totalNumberOfTransactions; i++) {
-  //   totalTransactions[i + 1] = `$${total[i]},${payChoice[i]}`;
-  // }
-
-  // console.log('tt', (totalTransactions));
+  
+ 
 
   greetUser();
   displayTransOptions();
 }
 
-function greetUser() { 
+function greetUser() {
   console.log("\n~~~ Welcome to Wally's HotDogs ~~~\n");
 }
 
@@ -221,7 +203,6 @@ function displayTransOptions() {
 }
 
 function finalTransactionsAndTotalSales() {
-
   let totalNumberOfTransactions = total.length;
   let sum = 0;
   for (i = 0; i < total.length; i++) {
