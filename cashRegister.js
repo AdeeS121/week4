@@ -154,7 +154,6 @@ function displayTransOptions() {
       currentRunningTransactions();
     } else if (selection == 3) {
       finalTransactionsAndTotalSales();
-      // rl.close();
     } else {
       console.log("Invalid entry");
       displayTransOptions();
@@ -168,13 +167,13 @@ function currentRunningTransactions() {
   let totalNumbers = total.length;
   for (let i = 0; i < totalNumbers; i++) {
     totalTransactions[i + 1] = `$${total[i]} - ${payChoice[i]}`;
-  } if (totalNumbers == 0) {
-    console.log('{$0.00}')
-  } else {
- console.log(totalTransactions);
   }
-  
- 
+  if (totalNumbers == 0) {
+    // console.log('{$0.00}')  
+    console.log('Transactions: 0  \nTotal Sales: $0.00')
+  } else {
+    console.log(totalTransactions);
+  }
 
   greetUser();
   displayTransOptions();
@@ -208,11 +207,10 @@ function finalTransactionsAndTotalSales() {
   for (i = 0; i < total.length; i++) {
     sum += parseFloat(total[i]);
   }
-
   totalSales = sum.toFixed(2);
 
   console.log(
-    `~~ WOO HOO! Day is over ~~ \nGreat Job Today: \nTransactions: ${totalNumberOfTransactions}  \nTotal Sales: $${totalSales} \n\n~~ GOODBYE ~~`
+    `\n~~ WOO HOO! Day is over ~~ \nGreat Job Today: \nTransactions: ${totalNumberOfTransactions}  \nTotal Sales: $${totalSales}`
   );
 
   rl.close();
@@ -220,7 +218,7 @@ function finalTransactionsAndTotalSales() {
 
 startProgram();
 
-// rl.on("close", function () {
-//   console.log("\nBYE BYE !!!");
-//   process.exit(0);
-// });
+rl.on("close", function () {
+  console.log("\n\n~~ GOODBYE ~~\n");
+  process.exit(0);
+});
