@@ -45,7 +45,7 @@ function greetUser() {
 function displayTransOptions() {
   for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
 
-  rl.question("\nMake selection: ", function (selection) {
+  rl.question("\n>>>Make selection: ", function (selection) {
     if (selection == 1) {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
@@ -70,7 +70,7 @@ function displayChoicePayOptions() {
     `${foodItem[0]} - $${priceOfItem[0]} \n${foodItem[1]} - $${priceOfItem[1]} \n${foodItem[2]} - $${priceOfItem[2]} \n${foodItem[3]}`
   );
 
-  rl.question("\nSelect an item: ", function (choice) {
+  rl.question("\n>>>Select an item: ", function (choice) {
     food1 = foodItem[0].slice(6);
     food2 = foodItem[1].slice(6);
     food3 = foodItem[2].slice(6);
@@ -146,7 +146,7 @@ function greetUser() {
 function displayTransOptions() {
   for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
 
-  rl.question("\nMake selection: ", function (selection) {
+  rl.question("\n>>>Make selection: ", function (selection) {
     if (selection == 1) {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
@@ -186,7 +186,7 @@ function greetUser() {
 function displayTransOptions() {
   for (let [key, value] of transOptions) console.log(key + " " + "- " + value);
 
-  rl.question("\nMake selection: ", function (selection) {
+  rl.question("\n>>>Make selection: ", function (selection) {
     if (selection == 1) {
       console.log("\n~~ Starting New Transaction ~~ \n");
       displayChoicePayOptions();
