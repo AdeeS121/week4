@@ -103,16 +103,10 @@ function displayChoicePayOptions() {
 }
 
 function startPaymentProcess() {
-  // reduce returns one value (accumulator, value)
-  // let foodTotal = currentTransaction.reduce(function (curr, prev) {
-  //   return curr + prev;
-  // });
   foodTotal = 0;
   for (let i = 0; i < currentTransaction.length; i++) {
     foodTotal += currentTransaction[i];
   }
-
-  console.log("foodtotal", foodTotal);
 
   currentTransaction = [];
 
