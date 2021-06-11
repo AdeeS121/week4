@@ -104,9 +104,15 @@ function displayChoicePayOptions() {
 
 function startPaymentProcess() {
   // reduce returns one value (accumulator, value)
-  let foodTotal = currentTransaction.reduce(function (curr, prev) {
-    return curr + prev;
-  });
+  // let foodTotal = currentTransaction.reduce(function (curr, prev) {
+  //   return curr + prev;
+  // });
+  foodTotal = 0;
+  for (let i = 0; i < currentTransaction.length; i++) {
+    foodTotal += currentTransaction[i];
+  }
+
+  console.log("foodtotal", foodTotal);
 
   currentTransaction = [];
 
@@ -169,8 +175,8 @@ function currentRunningTransactions() {
     totalTransactions[i + 1] = `$${total[i]} - ${payChoice[i]}`;
   }
   if (totalNumbers == 0) {
-    // console.log('{$0.00}')  
-    console.log('Transactions: 0  \nTotal Sales: $0.00')
+    // console.log('{$0.00}')
+    console.log("Transactions: 0  \nTotal Sales: $0.00");
   } else {
     console.log(totalTransactions);
   }
