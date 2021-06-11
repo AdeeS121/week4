@@ -25,8 +25,8 @@ function startProgram() {
 }
 
 function mapObjectsSetup() {
-  transOptions.set("[1]", "Start transaction");
-  transOptions.set("[2]", "Current running transaction");
+  transOptions.set("[1]", "Start new transaction");
+  transOptions.set("[2]", "Current running transactions");
   transOptions.set("[3]", "Exit");
 
   choicePayOptions.set("[1] - Hot Dog", "4.50");
@@ -169,7 +169,6 @@ function currentRunningTransactions() {
     totalTransactions[i + 1] = `$${total[i]} - ${payChoice[i]}`;
   }
   if (totalNumbers == 0) {
-    // console.log('{$0.00}')
     console.log("Transactions: 0  \nTotal Sales: $0.00");
   } else {
     console.log(totalTransactions);
@@ -210,7 +209,7 @@ function finalTransactionsAndTotalSales() {
   totalSales = sum.toFixed(2);
 
   console.log(
-    `\n~~ WOO HOO! Day is over ~~ \nGreat Job Today: \nTransactions: ${totalNumberOfTransactions}  \nTotal Sales: $${totalSales}`
+    `~~ WOO HOO! Day is over ~~ \nGreat Job Today: \nTransactions: ${totalNumberOfTransactions}  \nTotal Sales: $${totalSales}`
   );
 
   rl.close();
@@ -219,6 +218,6 @@ function finalTransactionsAndTotalSales() {
 startProgram();
 
 rl.on("close", function () {
-  console.log("\n\n~~ GOODBYE ~~\n");
+  console.log("\n~~ GOODBYE ~~\n");
   process.exit(0);
 });
